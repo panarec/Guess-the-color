@@ -1,73 +1,133 @@
 let rgbTask = document.getElementById("rgb-task");
 let colorsPlace = document.getElementById("colors-place");
 let color = document.getElementsByClassName("color");
-let scoreCounter = document.getElementById("scoreCounter")
-let next = document.getElementById("next")
-let check = document.getElementsByClassName("check-icon")
-let wd = document.createElement("li")
-let arr
-const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-let getRandomRgb = () => [random(0, 255) , random(0, 255) , random(0, 255)];
+let scoreCounter = document.getElementById("scoreCounter");
+let message = document.getElementById("message");
+let messageContainer = document.querySelector(".message-container")
+let check = document.getElementsByClassName("check-icon");
+let arr;
 let rgb;
 let winBox;
 let score = 0;
+
+let difficulty = 1;
+let easy = document.getElementById("easy");
+let normal = document.getElementById("normal");
+let hard = document.getElementById("hard");
+
+/* Create random RGB and Random position */
+const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+let getRandomRgb = () => [random(0, 255) , random(0, 255) , random(0, 255)];
+
+/*Generate colors */
+
 const getColors = () => {
   colorsPlace.innerHTML= '';
-  for (i = 0; i < 6; i++) {
-      colorsPlace.innerHTML += `<li class="color" style="background:rgb(${getRandomRgb()})"></li>`
-  };
-  arr = Array.from(color)
-};
-getColors()
-const winPick = () => 
-  {
-    arr.map(col => 
+  if (difficulty === 0) {
+    for (i = 0; i < 3; i++) 
     {
-      col.style.background = `${winBox.style.background}`
-      col.style.transform = "rotateY(180deg)"
-      col.style.borderRadius = "15px"
-    })
+    colorsPlace.style.gridTemplateColumns = "10rem 10rem 10rem"
+    colorsPlace.style.gridTemplateRows = "10rem"
+    colorsPlace.innerHTML += `<li class="color" style="background:rgb(${getRandomRgb()})"></li>`
+    };
   }
+  else if (difficulty === 1) {
+    for (i = 0; i < 6; i++) 
+    {
+    colorsPlace.style.gridTemplateColumns = "10rem 10rem 10rem"
+    colorsPlace.style.gridTemplateRows = "10rem 10rem"
+    colorsPlace.innerHTML += `<li class="color" style="background:rgb(${getRandomRgb()})"></li>`
+    };
+  }
+  else if (difficulty === 2) {
+    for (i = 0; i < 18; i++) 
+    {
+    colorsPlace.style.gridTemplateColumns = "5rem 5rem 5rem 5rem 5rem 5rem"
+    colorsPlace.style.gridTemplateRows = "5rem 5rem 5rem"
+    colorsPlace.innerHTML += `<li class="color" style="background:rgb(${getRandomRgb()})"></li>`
+    };
+  }
+  
+  arr = Array.from(color);
+  messageContainer.classList.toggle("active");
+
+};
+getColors();
+
+/* Generate round */ 
 const newRound = () => 
 {
-  next.innerText = ""
-  winBox = arr[Math.floor(Math.random() * arr.length)]
+  message.style.color = "#000";
+  message.innerText = "Pick one!";
+  
+  winBox = arr[Math.floor(Math.random() * arr.length)];
   console.log(winBox);
-  rgbTask.innerText = `${winBox.style.background.toUpperCase()}`
+  rgbTask.innerText = `${winBox.style.background.toUpperCase()}`;
+  /* Picked non-winning color */
   arr.map(col => {
     if (col.style.background !== winBox.style.background) 
   {
     col.addEventListener("click", function() {
-      next.style.color = "#fe2712"
-      next.innerText = "NOPE!"
-      winPick()
+      message.style.color = "#fe2712";
+      message.innerText = "NOPE!";
+      messageContainer.classList.toggle("active");
+      winPick();
       setTimeout(() => 
       {
-        getColors()
-        newRound()
+        getColors();
+        newRound();        
       }, 2000); 
-    })
+    });
     
   }
-  })
+  });
+  /* Picked winning color */
   winBox.addEventListener("click", function() 
   {
-    next.style.color = "#66b032"
-    next.innerText = "THAT´S RIGHT!"
-      winPick()
+    message.style.color = "#66b032";
+    message.innerText = "THAT´S RIGHT!";
+    messageContainer.classList.toggle("active");
+      winPick();
       setTimeout(() => 
       {
-        getColors()
-        newRound()
+        getColors();
+        newRound();
       }, 2000);
-  })
+  });
+};
+newRound();
+const winPick = () => 
+  {
+    arr.map(col => 
+    {
+      col.style.background = `${winBox.style.background}`;
+      col.style.transform = "rotateY(180deg)";
+      col.style.borderRadius = "15px";
+    });
+  };
+
+/* SIDEBAR */
+let htp = document.querySelector("#htp");
+let sidebar = document.querySelector(".sidebar"); 
+
+
+htp.onclick = function() {
+  sidebar.classList.toggle("active")
+};
+
+/* Difficulty settings */
+var btnContainer = document.querySelector(".difficulty-levels")
+
+var btns = btnContainer.getElementsByClassName("difficulty-level");
+
+for (var i = 0; i < btns.length; i++) {
+  var current = document.getElementsByClassName("active");
+  btns[i].addEventListener("click", function() {
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+    btnsArr = Array.from(btns);
+    difficulty = btnsArr.indexOf(current[0])
+    getColors()
+    newRound()
+  });
 }
-
-next.addEventListener("click", function() 
-{
-  getColors()
-  newRound()
-})
-newRound()
-
-

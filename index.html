@@ -23,15 +23,60 @@
         </h1>
     </header>
     <main>
+        <aside>
+            <div class="sidebar">
+                <div class="content">
+                    <h2>
+                        Čo je RGB?
+                    </h2>
+                    <p class="description">
+                        RGB (červená, zelená, modrá) je systém zobrazovania farieb na displeji počítača. 
+                        Každá farba je reprezentovaná tromi číslami, každé v rozmedzí od 0 do 255. Prvé číslo predstavuje 
+                        červenú, ďalšie zelenú a konečné číslo predstavuje, modrú. 
+                    </p>
+                    <p class="description">
+                        Čím vyššie číslo, tým viac 
+                        tejto farby. Napríklad (255, 0, 0) predstavuje plnú červenú farbu, pretože číslo predstavujúce červenú je 
+                        najvyššia možná hodnota (255) a existuje nula zelených a nulových modrých. (0, 0, 0) vytvára čiernu 
+                        farbu a (255, 255, 255) vytvára bielu.
+                    </p> 
+                    <p class="description">
+                        Tieto 3 farby je možné kombinovať a vytvoriť tak akúkoľvek viditeľnú 
+                        farbu. V tejto hádanke farebnej hry sa vygenerujú tri náhodné čísla, ktoré v kombinácii vytvori
+                        a farbu vo viditeľnom spektre. Tento farebný systém sa používa online pri webovom vývoji a dizajne. Ak sa 
+                        chcete dozvedieť viac, navštívte <a href="https://sk.wikipedia.org/wiki/RGB" target="_blank">Wikipediu.</a>
+                    </p>                     
+                </div>
+            
+                <button id="htp">
+                    <img src="./img/help-web-button.svg" alt="" class="question-mark">
+                </button>
+            </div>
+        </aside>
         <div class="app">
             <header class="task">
+                <div class="menu">
+                    <ul class="difficulty-levels">
+                        <li class="difficulty-level" id="easy">
+                            Easy
+                        </li>
+                        <li class="difficulty-level active" id="normal">
+                            Normal
+                         </li>
+                         <li class="difficulty-level" id="hard">
+                            Hard
+                         </li>
+                        
+                    </ul>   
+                </div>
                 <h2 id="rgb-task">RGB (0, 0, 0)</h2>
             </header>
             <ul class="colors" id="colors-place">
             </ul>
-            <footer class="play-buttons">
-                <h4 href="#" class="next-button" id="next"></h4>                
-                <span id="scoreCounter"></span>
+            <footer>
+                <div class="message-container">
+                    <h4 class="next-button" id="message"></h4>
+                </div>             
             </footer>
         </div>
     </main>
