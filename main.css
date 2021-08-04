@@ -18,9 +18,12 @@ span {
     letter-spacing: 0;
 }
 /* APP */
+
+/* Difficulties */ 
 .menu {
     display: flex;
     justify-content: center;
+    padding: 1rem 0rem;
 }
 .difficulty-levels {
     list-style: none;
@@ -39,7 +42,10 @@ span {
 .difficulty-level.active{
     background: rgba(205, 203, 218, 0.623);
 }
-
+.task {
+    margin: 0;
+}
+/* Colors */ 
 body main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -50,12 +56,11 @@ body main {
     box-shadow: -1px 3px 15px -5px rgba(0,0,0,0.75);
     -webkit-box-shadow: -1px 3px 15px -5px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 3px 15px -5px rgba(0,0,0,0.75);
-
 }
-header h2 {
+.task h2 {
     letter-spacing: 0.25rem;
     text-align: center;
-    margin: 2rem 0rem;
+    margin: 1rem 0rem 2rem 0rem;
 }
 .colors {
     display: grid;
@@ -91,6 +96,7 @@ header h2 {
     text-align: center;
 }
 
+/* Message */ 
 .message-container {
     font-size: 2rem;
     font-weight: 700;

@@ -10,7 +10,7 @@ let rgb;
 let winBox;
 let score = 0;
 
-let difficulty = 1;
+let difficulty = 0;
 let easy = document.getElementById("easy");
 let normal = document.getElementById("normal");
 let hard = document.getElementById("hard");
