@@ -1,7 +1,7 @@
 let rgbTask = document.getElementById("rgb-task");
 let colorsPlace = document.getElementById("colors-place");
 let color = document.getElementsByClassName("color");
-let scoreCounter = document.getElementById("scoreCounter");
+let scoreCounter = document.getElementById("score-counter");
 let message = document.getElementById("message");
 let messageContainer = document.querySelector(".message-container")
 let check = document.getElementsByClassName("check-icon");
@@ -10,7 +10,7 @@ let rgb;
 let winBox;
 let score = 0;
 
-let difficulty = 0;
+let difficulty = 1;   
 let easy = document.getElementById("easy");
 let normal = document.getElementById("normal");
 let hard = document.getElementById("hard");
@@ -47,21 +47,26 @@ const getColors = () => {
     colorsPlace.innerHTML += `<li class="color" style="background:rgb(${getRandomRgb()})"></li>`
     };
   }
-  
   arr = Array.from(color);
-  messageContainer.classList.toggle("active");
-
+  appear();
 };
 getColors();
+
+function appear() {
+  messageContainer.classList.add("active")
+  setTimeout(() => {  
+    messageContainer.classList.remove("active")
+  }, 1000);
+}
 
 /* Generate round */ 
 const newRound = () => 
 {
   message.style.color = "#000";
-  message.innerText = "Pick one!";
+  message.innerText = "PICK THE COLOR!";
+  scoreCounter.innerText = `${score}`;
   
   winBox = arr[Math.floor(Math.random() * arr.length)];
-  console.log(winBox);
   rgbTask.innerText = `${winBox.style.background.toUpperCase()}`;
   /* Picked non-winning color */
   arr.map(col => {
@@ -69,8 +74,24 @@ const newRound = () =>
   {
     col.addEventListener("click", function() {
       message.style.color = "#fe2712";
-      message.innerText = "NOPE!";
-      messageContainer.classList.toggle("active");
+      appear();
+      message.innerText = "TRY AGAIN!";
+      if (score > 0)
+      {
+        if (difficulty === 0) 
+        {
+          score -= 1
+        }
+        else if (difficulty === 1 && score > 1) 
+        {
+          score -= 2
+        }
+        else if (difficulty === 2 && score > 2) 
+        {
+          score -= 3 
+        }
+      }
+      scoreCounter.innerText = `${score}`;
       winPick();
       setTimeout(() => 
       {
@@ -85,8 +106,22 @@ const newRound = () =>
   winBox.addEventListener("click", function() 
   {
     message.style.color = "#66b032";
-    message.innerText = "THAT´S RIGHT!";
-    messageContainer.classList.toggle("active");
+    appear();
+    message.innerText = "EXACTLY!";
+    if (difficulty === 0) 
+    {
+      score += 1
+    }
+    else if (difficulty === 1) 
+    {
+      score += 5
+    }
+    else if (difficulty === 2) 
+    {
+      score += 10
+    }
+    scoreCounter.innerText = `${score}`;
+    
       winPick();
       setTimeout(() => 
       {
@@ -121,12 +156,13 @@ var btnContainer = document.querySelector(".difficulty-levels")
 var btns = btnContainer.getElementsByClassName("difficulty-level");
 
 for (var i = 0; i < btns.length; i++) {
-  var current = document.getElementsByClassName("active");
+  var current = document.getElementsByClassName("activeLevel");
   btns[i].addEventListener("click", function() {
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
+    current[0].className = current[0].className.replace(" activeLevel", "");
+    this.className += " activeLevel";
     btnsArr = Array.from(btns);
     difficulty = btnsArr.indexOf(current[0])
+    score = 0;
     getColors()
     newRound()
   });

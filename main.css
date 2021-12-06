@@ -3,7 +3,7 @@
 body {
     background: #334144;
     font-family: 'Open Sans', sans-serif;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 body header {
     margin: 2rem 0rem;
@@ -32,14 +32,16 @@ span {
 }
 .difficulty-level {
     display: inline;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-decoration: none;
     color: rgb(44, 44, 46);
     padding: 0rem 1.5rem; 
     margin: 0rem 0.5rem;
     cursor: pointer;   
+    font-weight: 700;
+    
 }
-.difficulty-level.active{
+.difficulty-level.activeLevel{
     background: rgba(205, 203, 218, 0.623);
 }
 .task {
@@ -98,7 +100,7 @@ body main {
 
 /* Message */ 
 .message-container {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: 2px;
     background: none;
@@ -119,24 +121,25 @@ body main {
     }
     50% 
     {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
+    
 }
 .message-container h4{
     margin: 0;
 }
 
 
-/* SIDEBAR */
-
-
+/* SIDEBAR HOW TO PLAY */
 .sidebar {
     position: relative;
     transition: all 0.5s ease-in-out;
     display: flex;
-    right: 310px;
+    right: 340px;
 }
-
+.item {
+    grid-row: 1 / 3;
+}
 #htp {
     height: 4rem;
     width: 4rem;
@@ -155,8 +158,8 @@ body main {
 
 .sidebar .content {
     background-color: #fff;
-    width: 15rem;
-    padding: 2rem 2rem;
+    width: 17rem;
+    padding: 1rem 2rem;
     border-radius: 0px 12px 12px 0px;
 }
 .description {
@@ -167,4 +170,59 @@ body main {
 }
 .sidebar.active {
     right: 0;
+}
+
+/* SIDEBAR SCORE */
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.score-container {
+    background-color: #fff;
+    height: auto;
+    padding: 0rem 5rem;   
+    margin: 0rem 5rem;   
+    border-radius: 15px;
+}
+.score-container h2 {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 1.5rem;
+    margin: 0;
+
+    font-size: 3rem;
+
+}
+.score-counter {
+    font-size: 8rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+@media (max-width: 1024px ) {
+    header h1 {
+        margin: 0 1rem;
+    }
+    
+    body main {
+        display: flex;
+        flex-direction: column;
+    }
+    .item {
+        display: none;
+    }
+    .app {
+        margin: 0 5%;
+    }
+    #colors-place {
+        column-gap: 1%;
+        display: flex;
+        flex-direction: column;
+    }
+    .color {
+        height: 20rem;
+    }
 }

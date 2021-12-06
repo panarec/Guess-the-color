@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="./normalize.css">
     <link rel="stylesheet" href="./main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap" rel="stylesheet">  
-    <title>Guess the color</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <title>Hádaj Farbu</title>
 </head>
 <body>
     <header>
         <h1>
-            GUESS THE 
+            GUESS THE
             <span style="color:#0247fe">C</span>
             <span style="color:#66b032">O</span>
             <span style="color:#fefe33">L</span>
@@ -23,29 +24,29 @@
         </h1>
     </header>
     <main>
-        <!--SIDEBAR-->
-        <aside>
+        <!--SIDEBAR HOW TO PLAY-->
+        <aside class="item ">
             <div class="sidebar">
                 <div class="content">
                     <h2>
-                        Čo je RGB?
+                        WHAT IS RGB? 
                     </h2>
                     <p class="description">
-                        RGB (červená, zelená, modrá) je systém zobrazovania farieb na displeji počítača. 
-                        Každá farba je reprezentovaná tromi číslami, každé v rozmedzí od 0 do 255. Prvé číslo predstavuje 
-                        červenú, ďalšie zelenú a konečné číslo predstavuje, modrú. 
+                        RGB (Red, Green, Blue) is a system of representing colors on a computer display. 
+                        Each color is represented by three numbers, each ranging from 0 to 255. The first number represents 
+                        red, the next represents green and the final number represents how much blue there is. The higher the 
+                        number, the more of that color.  
                     </p>
                     <p class="description">
-                        Čím vyššie číslo, tým viac 
-                        tejto farby. Napríklad (255, 0, 0) predstavuje plnú červenú farbu, pretože číslo predstavujúce červenú je 
-                        najvyššia možná hodnota (255) a existuje nula zelených a nulových modrých. (0, 0, 0) vytvára čiernu 
-                        farbu a (255, 255, 255) vytvára bielu.
+                        So, for example (255, 0, 0) represents a full red color, because the number 
+                        representing red is the highest possible value (255) and there is zero green and zero blue. (0, 0, 0) 
+                        produces black and (255, 255, 255) produces white (see image). These 3 colors can be combined to produce 
+                        any visible color.
                     </p> 
                     <p class="description">
-                        Tieto 3 farby je možné kombinovať a vytvoriť tak akúkoľvek viditeľnú 
-                        farbu. V tejto hádanke farebnej hry sa vygenerujú tri náhodné čísla, ktoré v kombinácii vytvori
-                        a farbu vo viditeľnom spektre. Tento farebný systém sa používa online pri webovom vývoji a dizajne. Ak sa 
-                        chcete dozvedieť viac, navštívte <a href="https://sk.wikipedia.org/wiki/RGB" target="_blank">Wikipediu.</a>
+                        In this guess the color game, three random number are generated which, when combined, 
+                        produce a color within the visible spectrum. This color system is used online in web deveopment and design. 
+                        Visit <a href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank">Wikipedia.</a> to learn more.
                     </p>                     
                 </div>
             
@@ -60,10 +61,10 @@
                 <header class="task">
                     <div class="menu">
                         <ul class="difficulty-levels">
-                            <li class="difficulty-level active" id="easy">
+                            <li class="difficulty-level" id="easy">
                                 Easy
                             </li>
-                            <li class="difficulty-level" id="normal">
+                            <li class="difficulty-level  activeLevel" id="normal">
                                 Normal
                              </li>
                              <li class="difficulty-level" id="hard">
@@ -83,6 +84,18 @@
                 </footer>
             </div>
         </div>
+        <!--SCORE-->
+        <aside class="score">
+            <div class="score-container">
+                <h2>
+                    Score:
+                </h2>
+                <div class="score-counter" id="score-counter">
+                    
+                </div>
+            </div>
+        </aside>
+        
     </main>
     <script src="./main.js"></script>
 </body>
